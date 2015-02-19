@@ -1,0 +1,101 @@
+# Git Procedure for Agile Development
+
+This document is meant to be the basis of our git version control procedures. We are using an agile methodology and will be utilizing this methodology in our version control. Anything inside of {} brackets are describing how to name something or refering to a name we will change or add at a later date
+
+## Keywords
+Source = The Basis of the project
+
+Development = Version that is for development
+
+Server = Describes version control for our Development Server, Staging Server and Production Server
+
+Stable Version = Version that has been released (Major Version)
+
+Feature = A feature from the product backlog. (can also at times be reffered to as a sprint) (Minor Version)
+
+Sub-Feature = A sub feature of a feature (sprint) (can also at times be reffered to as functionality)
+
+## Naming Schema
+We use a specfic naming schema for our branches to allow us to maintain an agile method with-in our version control. This allows us to develop independently while still using an agile methodology and maintaining structured source control. The below names are divided by category and the names also include a description.
+
+We are using semantic verstioning based on http://semver.org/
+
+***versions number system = #{major version}.#{minor version}.#{patch}
+
+#### Source
+master = source *NEVER COMMIT, MERGE TO or TOUCH THIS BRANCH*
+
+stable_{project name}_#.#.#  = most stable live version of source
+
+#### Development
+development = our working dev branch
+
+dev_{feature shortname}_#.#.# = our working feature (sprint) branch
+
+#### Server
+staging_{project name}_#.#.# = used to move to staging
+
+## Development
+We use a specfic method for branching, commiting, merging etc. to achieve an agile methodology follow the use cases, examples and explanations below as a guide.
+
+### Start Feature (Sprint)
+When starting make sure to clone the source this will include the following branches: maste and development. The other branches will be created as the project moves forward.
+```
+git clone https://github.com/(UserName)/(NameOfRepo).git
+```
+#### Begin Feature (Sprint)
+The Project lead will create a new branch for each sprint and push to server
+
+You will need to pull the feature branch and create/merge to a local branch 
+```
+$ git pull origin (FeatureBranchName)
+
+$ git branch (YourBranchLocalName)
+
+$ git checkout (YourBranchLocalName)
+
+$ git merge (FeatureBranchName)
+```
+#### Commits
+Make sure everytime you finish functionality or a sub-feature of a feature (sprint) that you commit this locally and also to the remote origin. Make sure to give a detailed description between 5-15 words. Make sure to pull the remote feature branch to make sure you have the most up-to-date version of this branch.
+```
+$ git pull origin (FeatureBranchName)
+
+$ git checkout (FeatureBranchName)
+
+$ git merge (YourBranchLocalName)
+
+$ git push origin (FeatureBranchName)
+```
+#### Merge Conflicts
+Make sure you pulled remote. If you did and are still having an error (and cannot resolve) contact project lead and/or the developer that it wrote the original code that is causing the error.
+
+### End Feature (Sprint)
+At end of a Feature (Sprint) the project leader will merge the completed feature into a staging branch that can be moved to the staging server for testing.
+
+### Staging to Production & Stable Version
+The project leader upon the completion of testing, changes etc. will move the staging branch from staging environment to production environment. This staging branch then will be branched as a stable version using the numbering system etc.
+
+#### Hotfixes (Patches)
+You can make hot fixes off of a staging branch by creating another branch called hotfix_staging_{project name}_#.##. This branch is to be incorporated in the next sprint.
+
+### Rules
+1. NEVER merge to, edit or touch master or any Stable versions. Only project lead will move development branches to Stable releases.
+
+2. NEVER start a dev session without pulling the most up to date branch and merging into your local!
+
+3. ALWAYS develop on a local branch! You should only checkout other branches to merge your commits.
+
+4. ALWAYS commit LOCALLY and REMOTELY everytime you complete functionality or a sub-feature 
+
+5. IF you ever have an issue just ask. You can refer to our old [gitcommands gist](https://gist.github.com/zrosenbauer/b98d4406e360953f415d) or the [Git Cheat Sheet](https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf)
+ 
+### Contact Info
+Name: Zac
+
+Email: [zac.rosenbauer@insourc.com](mailto:zac.rosenbauer@insourc.com)
+
+Phone: 419.230.0490
+
+### Special Thanks to
+Darrell for walking through this multiple times with me and everyone else that gave it a once over!
